@@ -110,7 +110,7 @@ def create_app():
             board.webhook_id        = webhook_data.get("id")
             board.webhook_active    = webhook_data.get("active", False)
             db_session.add(board)
-            db_session.commit(board)
+            db_session.commit()
 
             return {"status": "Success",
                     "data" : board.json(),
