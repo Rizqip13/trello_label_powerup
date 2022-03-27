@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  mydb:
+    image: mysql:8.0.28
+    ports: 
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=Pelangi123
+      - MYSQL_DATABASE=trello
