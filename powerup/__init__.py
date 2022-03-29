@@ -52,8 +52,11 @@ def create_app():
             return Response(status=200)
 
         webhook_payload = WebhookPayloadModel(action_type=action_type, action_payload=action_payload)
-        _, status_code = post_comment(comment= webhook_payload.comment, card_id= webhook_payload.card_id, KEY=KEY, TOKEN=TOKEN)
-
+        if webhook_payload.card_id is None:
+            status_code = 200
+        else:
+            _, status_code = post_comment(comment= webhook_payload.comment, card_id= webhook_payload.card_id, KEY=KEY, TOKEN=TOKEN)
+        
         if status_code == 200:
             webhook_payload.status = "Success"
         else:
